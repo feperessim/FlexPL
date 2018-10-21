@@ -1,0 +1,3031 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CASE
+    COLON
+    DO
+    SWITCH
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> function_definition program
+Rule 2     program -> class_definition program
+Rule 3     program -> function_call
+Rule 4     program -> empty
+Rule 5     class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE
+Rule 6     function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN block
+Rule 7     function_definition_args -> var_list
+Rule 8     function_definition_args -> empty
+Rule 9     var_list -> var_declaration COMMA var_list
+Rule 10    var_list -> var_declaration
+Rule 11    var_declaration -> data_type ID
+Rule 12    data_type -> VOID
+Rule 13    data_type -> INT
+Rule 14    data_type -> FLOAT
+Rule 15    data_type -> STRING
+Rule 16    data_type -> CHAR
+Rule 17    function_call -> ID LPAREN function_call_args RPAREN
+Rule 18    function_call_args -> parameter_list
+Rule 19    function_call_args -> empty
+Rule 20    parameter_list -> expression COMMA parameter_list
+Rule 21    parameter_list -> expression
+Rule 22    block -> LBRACE statements RBRACE
+Rule 23    statements -> statement statements
+Rule 24    statements -> empty
+Rule 25    statement -> matched_statement
+Rule 26    statement -> unmatched_statement
+Rule 27    matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+Rule 28    matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement
+Rule 29    matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+Rule 30    matched_statement -> return_statement SEMI_COLON
+Rule 31    matched_statement -> compound_statement SEMI_COLON
+Rule 32    matched_statement -> simple_statement SEMI_COLON
+Rule 33    matched_statement -> block
+Rule 34    unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement
+Rule 35    unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement
+Rule 36    logical_expression -> logical_term OR logical_term
+Rule 37    logical_expression -> logical_term
+Rule 38    logical_term -> logical_factor AND logical_factor
+Rule 39    logical_term -> logical_factor
+Rule 40    logical_factor -> boolean_statement
+Rule 41    logical_factor -> NOT logical_factor
+Rule 42    logical_factor -> LPAREN logical_expression RPAREN
+Rule 43    boolean_statement -> value comparison_op value
+Rule 44    boolean_statement -> value
+Rule 45    value -> ID
+Rule 46    value -> number
+Rule 47    number -> int
+Rule 48    number -> float
+Rule 49    int -> INTCONST
+Rule 50    float -> FLOATCONST
+Rule 51    comparison_op -> LESS_THAN
+Rule 52    comparison_op -> LESS_EQUAL
+Rule 53    comparison_op -> GREATER_THAN
+Rule 54    comparison_op -> GREATER_EQUAL
+Rule 55    comparison_op -> EQUAL
+Rule 56    comparison_op -> NOT_EQUAL
+Rule 57    compound_statement -> var_list
+Rule 58    compound_statement -> assignment
+Rule 59    simple_statement -> expression
+Rule 60    assignment -> var_declaration EQUALS expression
+Rule 61    assignment -> var_declaration EQUALS string
+Rule 62    assignment -> var_declaration EQUALS char
+Rule 63    assignment -> ID EQUALS expression
+Rule 64    assignment -> ID EQUALS string
+Rule 65    assignment -> ID EQUALS char
+Rule 66    string -> STRINGCONST
+Rule 67    char -> CHARCONST
+Rule 68    expression -> expression PLUS term
+Rule 69    expression -> expression MINUS term
+Rule 70    expression -> term
+Rule 71    term -> term TIMES factor
+Rule 72    term -> term DIVIDE factor
+Rule 73    term -> term MOD factor
+Rule 74    term -> factor
+Rule 75    factor -> number
+Rule 76    factor -> ID
+Rule 77    factor -> factor_expr
+Rule 78    factor -> function_call
+Rule 79    factor_expr -> LPAREN expression RPAREN
+Rule 80    uminus_expression -> MINUS LPAREN expression RPAREN
+Rule 81    empty -> <empty>
+Rule 82    return_statement -> RETURN expression
+Rule 83    function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN error
+
+Terminals, with rules where they appear
+
+AND                  : 38
+CASE                 : 
+CHAR                 : 16
+CHARCONST            : 67
+CLASS                : 5
+COLON                : 
+COMMA                : 9 20
+DEFINE               : 5 6 83
+DIVIDE               : 72
+DO                   : 
+ELSE                 : 27 35
+EQUAL                : 55
+EQUALS               : 60 61 62 63 64 65
+FLOAT                : 14
+FLOATCONST           : 50
+FOR                  : 29
+GREATER_EQUAL        : 54
+GREATER_THAN         : 53
+ID                   : 5 6 11 17 45 63 64 65 76 83
+IF                   : 27 34 35
+INT                  : 13
+INTCONST             : 49
+LBRACE               : 5 22
+LESS_EQUAL           : 52
+LESS_THAN            : 51
+LPAREN               : 5 6 17 27 28 29 34 35 42 79 80 83
+MINUS                : 69 80
+MOD                  : 73
+NOT                  : 41
+NOT_EQUAL            : 56
+OR                   : 36
+PLUS                 : 68
+RBRACE               : 5 22
+RETURN               : 82
+RPAREN               : 5 6 17 27 28 29 34 35 42 79 80 83
+SEMI_COLON           : 29 29 30 31 32
+STRING               : 15
+STRINGCONST          : 66
+SWITCH               : 
+TIMES                : 71
+VOID                 : 12
+WHILE                : 28
+error                : 83
+
+Nonterminals, with rules where they appear
+
+assignment           : 29 29 58
+block                : 6 33
+boolean_statement    : 40
+char                 : 62 65
+class_definition     : 2
+comparison_op        : 43
+compound_statement   : 31
+data_type            : 6 11 83
+empty                : 4 8 19 24
+expression           : 20 21 59 60 63 68 69 79 80 82
+factor               : 71 72 73 74
+factor_expr          : 77
+float                : 48
+function_call        : 3 78
+function_call_args   : 17
+function_definition  : 1
+function_definition_args : 6 83
+int                  : 47
+logical_expression   : 27 28 29 34 35 42
+logical_factor       : 38 38 39 41
+logical_term         : 36 36 37
+matched_statement    : 25 27 27 28 29 34 35
+number               : 46 75
+parameter_list       : 18 20
+program              : 1 2 5 0
+return_statement     : 30
+simple_statement     : 32
+statement            : 23
+statements           : 22 23
+string               : 61 64
+term                 : 68 69 70 71 72 73
+uminus_expression    : 
+unmatched_statement  : 26 35
+value                : 43 43 44
+var_declaration      : 9 10 60 61 62
+var_list             : 7 9 57
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . function_definition program
+    (2) program -> . class_definition program
+    (3) program -> . function_call
+    (4) program -> . empty
+    (6) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN block
+    (83) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN error
+    (5) class_definition -> . DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (81) empty -> .
+
+    DEFINE          shift and go to state 6
+    ID              shift and go to state 7
+    $end            reduce using rule 81 (empty -> .)
+
+    program                        shift and go to state 1
+    function_definition            shift and go to state 2
+    class_definition               shift and go to state 3
+    function_call                  shift and go to state 4
+    empty                          shift and go to state 5
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> function_definition . program
+    (1) program -> . function_definition program
+    (2) program -> . class_definition program
+    (3) program -> . function_call
+    (4) program -> . empty
+    (6) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN block
+    (83) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN error
+    (5) class_definition -> . DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (81) empty -> .
+
+    DEFINE          shift and go to state 6
+    ID              shift and go to state 7
+    $end            reduce using rule 81 (empty -> .)
+    RBRACE          reduce using rule 81 (empty -> .)
+
+    function_definition            shift and go to state 2
+    program                        shift and go to state 8
+    class_definition               shift and go to state 3
+    function_call                  shift and go to state 4
+    empty                          shift and go to state 5
+
+state 3
+
+    (2) program -> class_definition . program
+    (1) program -> . function_definition program
+    (2) program -> . class_definition program
+    (3) program -> . function_call
+    (4) program -> . empty
+    (6) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN block
+    (83) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN error
+    (5) class_definition -> . DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (81) empty -> .
+
+    DEFINE          shift and go to state 6
+    ID              shift and go to state 7
+    $end            reduce using rule 81 (empty -> .)
+    RBRACE          reduce using rule 81 (empty -> .)
+
+    class_definition               shift and go to state 3
+    program                        shift and go to state 9
+    function_definition            shift and go to state 2
+    function_call                  shift and go to state 4
+    empty                          shift and go to state 5
+
+state 4
+
+    (3) program -> function_call .
+
+    $end            reduce using rule 3 (program -> function_call .)
+    RBRACE          reduce using rule 3 (program -> function_call .)
+
+
+state 5
+
+    (4) program -> empty .
+
+    $end            reduce using rule 4 (program -> empty .)
+    RBRACE          reduce using rule 4 (program -> empty .)
+
+
+state 6
+
+    (6) function_definition -> DEFINE . data_type ID LPAREN function_definition_args RPAREN block
+    (83) function_definition -> DEFINE . data_type ID LPAREN function_definition_args RPAREN error
+    (5) class_definition -> DEFINE . CLASS ID LPAREN RPAREN LBRACE program RBRACE
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+
+    CLASS           shift and go to state 11
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+
+    data_type                      shift and go to state 10
+
+state 7
+
+    (17) function_call -> ID . LPAREN function_call_args RPAREN
+
+    LPAREN          shift and go to state 17
+
+
+state 8
+
+    (1) program -> function_definition program .
+
+    $end            reduce using rule 1 (program -> function_definition program .)
+    RBRACE          reduce using rule 1 (program -> function_definition program .)
+
+
+state 9
+
+    (2) program -> class_definition program .
+
+    $end            reduce using rule 2 (program -> class_definition program .)
+    RBRACE          reduce using rule 2 (program -> class_definition program .)
+
+
+state 10
+
+    (6) function_definition -> DEFINE data_type . ID LPAREN function_definition_args RPAREN block
+    (83) function_definition -> DEFINE data_type . ID LPAREN function_definition_args RPAREN error
+
+    ID              shift and go to state 18
+
+
+state 11
+
+    (5) class_definition -> DEFINE CLASS . ID LPAREN RPAREN LBRACE program RBRACE
+
+    ID              shift and go to state 19
+
+
+state 12
+
+    (12) data_type -> VOID .
+
+    ID              reduce using rule 12 (data_type -> VOID .)
+
+
+state 13
+
+    (13) data_type -> INT .
+
+    ID              reduce using rule 13 (data_type -> INT .)
+
+
+state 14
+
+    (14) data_type -> FLOAT .
+
+    ID              reduce using rule 14 (data_type -> FLOAT .)
+
+
+state 15
+
+    (15) data_type -> STRING .
+
+    ID              reduce using rule 15 (data_type -> STRING .)
+
+
+state 16
+
+    (16) data_type -> CHAR .
+
+    ID              reduce using rule 16 (data_type -> CHAR .)
+
+
+state 17
+
+    (17) function_call -> ID LPAREN . function_call_args RPAREN
+    (18) function_call_args -> . parameter_list
+    (19) function_call_args -> . empty
+    (20) parameter_list -> . expression COMMA parameter_list
+    (21) parameter_list -> . expression
+    (81) empty -> .
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    RPAREN          reduce using rule 81 (empty -> .)
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    function_call_args             shift and go to state 22
+    parameter_list                 shift and go to state 23
+    empty                          shift and go to state 24
+    expression                     shift and go to state 25
+    term                           shift and go to state 26
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 18
+
+    (6) function_definition -> DEFINE data_type ID . LPAREN function_definition_args RPAREN block
+    (83) function_definition -> DEFINE data_type ID . LPAREN function_definition_args RPAREN error
+
+    LPAREN          shift and go to state 35
+
+
+state 19
+
+    (5) class_definition -> DEFINE CLASS ID . LPAREN RPAREN LBRACE program RBRACE
+
+    LPAREN          shift and go to state 36
+
+
+state 20
+
+    (76) factor -> ID .
+    (17) function_call -> ID . LPAREN function_call_args RPAREN
+
+    TIMES           reduce using rule 76 (factor -> ID .)
+    DIVIDE          reduce using rule 76 (factor -> ID .)
+    MOD             reduce using rule 76 (factor -> ID .)
+    COMMA           reduce using rule 76 (factor -> ID .)
+    PLUS            reduce using rule 76 (factor -> ID .)
+    MINUS           reduce using rule 76 (factor -> ID .)
+    RPAREN          reduce using rule 76 (factor -> ID .)
+    SEMI_COLON      reduce using rule 76 (factor -> ID .)
+    LPAREN          shift and go to state 17
+
+
+state 21
+
+    (79) factor_expr -> LPAREN . expression RPAREN
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    expression                     shift and go to state 37
+    term                           shift and go to state 26
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 22
+
+    (17) function_call -> ID LPAREN function_call_args . RPAREN
+
+    RPAREN          shift and go to state 38
+
+
+state 23
+
+    (18) function_call_args -> parameter_list .
+
+    RPAREN          reduce using rule 18 (function_call_args -> parameter_list .)
+
+
+state 24
+
+    (19) function_call_args -> empty .
+
+    RPAREN          reduce using rule 19 (function_call_args -> empty .)
+
+
+state 25
+
+    (20) parameter_list -> expression . COMMA parameter_list
+    (21) parameter_list -> expression .
+    (68) expression -> expression . PLUS term
+    (69) expression -> expression . MINUS term
+
+    COMMA           shift and go to state 39
+    RPAREN          reduce using rule 21 (parameter_list -> expression .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 26
+
+    (70) expression -> term .
+    (71) term -> term . TIMES factor
+    (72) term -> term . DIVIDE factor
+    (73) term -> term . MOD factor
+
+    COMMA           reduce using rule 70 (expression -> term .)
+    PLUS            reduce using rule 70 (expression -> term .)
+    MINUS           reduce using rule 70 (expression -> term .)
+    RPAREN          reduce using rule 70 (expression -> term .)
+    SEMI_COLON      reduce using rule 70 (expression -> term .)
+    TIMES           shift and go to state 42
+    DIVIDE          shift and go to state 43
+    MOD             shift and go to state 44
+
+
+state 27
+
+    (74) term -> factor .
+
+    TIMES           reduce using rule 74 (term -> factor .)
+    DIVIDE          reduce using rule 74 (term -> factor .)
+    MOD             reduce using rule 74 (term -> factor .)
+    COMMA           reduce using rule 74 (term -> factor .)
+    PLUS            reduce using rule 74 (term -> factor .)
+    MINUS           reduce using rule 74 (term -> factor .)
+    RPAREN          reduce using rule 74 (term -> factor .)
+    SEMI_COLON      reduce using rule 74 (term -> factor .)
+
+
+state 28
+
+    (75) factor -> number .
+
+    TIMES           reduce using rule 75 (factor -> number .)
+    DIVIDE          reduce using rule 75 (factor -> number .)
+    MOD             reduce using rule 75 (factor -> number .)
+    COMMA           reduce using rule 75 (factor -> number .)
+    PLUS            reduce using rule 75 (factor -> number .)
+    MINUS           reduce using rule 75 (factor -> number .)
+    RPAREN          reduce using rule 75 (factor -> number .)
+    SEMI_COLON      reduce using rule 75 (factor -> number .)
+
+
+state 29
+
+    (77) factor -> factor_expr .
+
+    TIMES           reduce using rule 77 (factor -> factor_expr .)
+    DIVIDE          reduce using rule 77 (factor -> factor_expr .)
+    MOD             reduce using rule 77 (factor -> factor_expr .)
+    COMMA           reduce using rule 77 (factor -> factor_expr .)
+    PLUS            reduce using rule 77 (factor -> factor_expr .)
+    MINUS           reduce using rule 77 (factor -> factor_expr .)
+    RPAREN          reduce using rule 77 (factor -> factor_expr .)
+    SEMI_COLON      reduce using rule 77 (factor -> factor_expr .)
+
+
+state 30
+
+    (78) factor -> function_call .
+
+    TIMES           reduce using rule 78 (factor -> function_call .)
+    DIVIDE          reduce using rule 78 (factor -> function_call .)
+    MOD             reduce using rule 78 (factor -> function_call .)
+    COMMA           reduce using rule 78 (factor -> function_call .)
+    PLUS            reduce using rule 78 (factor -> function_call .)
+    MINUS           reduce using rule 78 (factor -> function_call .)
+    RPAREN          reduce using rule 78 (factor -> function_call .)
+    SEMI_COLON      reduce using rule 78 (factor -> function_call .)
+
+
+state 31
+
+    (47) number -> int .
+
+    TIMES           reduce using rule 47 (number -> int .)
+    DIVIDE          reduce using rule 47 (number -> int .)
+    MOD             reduce using rule 47 (number -> int .)
+    COMMA           reduce using rule 47 (number -> int .)
+    PLUS            reduce using rule 47 (number -> int .)
+    MINUS           reduce using rule 47 (number -> int .)
+    RPAREN          reduce using rule 47 (number -> int .)
+    SEMI_COLON      reduce using rule 47 (number -> int .)
+    LESS_THAN       reduce using rule 47 (number -> int .)
+    LESS_EQUAL      reduce using rule 47 (number -> int .)
+    GREATER_THAN    reduce using rule 47 (number -> int .)
+    GREATER_EQUAL   reduce using rule 47 (number -> int .)
+    EQUAL           reduce using rule 47 (number -> int .)
+    NOT_EQUAL       reduce using rule 47 (number -> int .)
+    AND             reduce using rule 47 (number -> int .)
+    OR              reduce using rule 47 (number -> int .)
+
+
+state 32
+
+    (48) number -> float .
+
+    TIMES           reduce using rule 48 (number -> float .)
+    DIVIDE          reduce using rule 48 (number -> float .)
+    MOD             reduce using rule 48 (number -> float .)
+    COMMA           reduce using rule 48 (number -> float .)
+    PLUS            reduce using rule 48 (number -> float .)
+    MINUS           reduce using rule 48 (number -> float .)
+    RPAREN          reduce using rule 48 (number -> float .)
+    SEMI_COLON      reduce using rule 48 (number -> float .)
+    LESS_THAN       reduce using rule 48 (number -> float .)
+    LESS_EQUAL      reduce using rule 48 (number -> float .)
+    GREATER_THAN    reduce using rule 48 (number -> float .)
+    GREATER_EQUAL   reduce using rule 48 (number -> float .)
+    EQUAL           reduce using rule 48 (number -> float .)
+    NOT_EQUAL       reduce using rule 48 (number -> float .)
+    AND             reduce using rule 48 (number -> float .)
+    OR              reduce using rule 48 (number -> float .)
+
+
+state 33
+
+    (49) int -> INTCONST .
+
+    TIMES           reduce using rule 49 (int -> INTCONST .)
+    DIVIDE          reduce using rule 49 (int -> INTCONST .)
+    MOD             reduce using rule 49 (int -> INTCONST .)
+    COMMA           reduce using rule 49 (int -> INTCONST .)
+    PLUS            reduce using rule 49 (int -> INTCONST .)
+    MINUS           reduce using rule 49 (int -> INTCONST .)
+    RPAREN          reduce using rule 49 (int -> INTCONST .)
+    SEMI_COLON      reduce using rule 49 (int -> INTCONST .)
+    LESS_THAN       reduce using rule 49 (int -> INTCONST .)
+    LESS_EQUAL      reduce using rule 49 (int -> INTCONST .)
+    GREATER_THAN    reduce using rule 49 (int -> INTCONST .)
+    GREATER_EQUAL   reduce using rule 49 (int -> INTCONST .)
+    EQUAL           reduce using rule 49 (int -> INTCONST .)
+    NOT_EQUAL       reduce using rule 49 (int -> INTCONST .)
+    AND             reduce using rule 49 (int -> INTCONST .)
+    OR              reduce using rule 49 (int -> INTCONST .)
+
+
+state 34
+
+    (50) float -> FLOATCONST .
+
+    TIMES           reduce using rule 50 (float -> FLOATCONST .)
+    DIVIDE          reduce using rule 50 (float -> FLOATCONST .)
+    MOD             reduce using rule 50 (float -> FLOATCONST .)
+    COMMA           reduce using rule 50 (float -> FLOATCONST .)
+    PLUS            reduce using rule 50 (float -> FLOATCONST .)
+    MINUS           reduce using rule 50 (float -> FLOATCONST .)
+    RPAREN          reduce using rule 50 (float -> FLOATCONST .)
+    SEMI_COLON      reduce using rule 50 (float -> FLOATCONST .)
+    LESS_THAN       reduce using rule 50 (float -> FLOATCONST .)
+    LESS_EQUAL      reduce using rule 50 (float -> FLOATCONST .)
+    GREATER_THAN    reduce using rule 50 (float -> FLOATCONST .)
+    GREATER_EQUAL   reduce using rule 50 (float -> FLOATCONST .)
+    EQUAL           reduce using rule 50 (float -> FLOATCONST .)
+    NOT_EQUAL       reduce using rule 50 (float -> FLOATCONST .)
+    AND             reduce using rule 50 (float -> FLOATCONST .)
+    OR              reduce using rule 50 (float -> FLOATCONST .)
+
+
+state 35
+
+    (6) function_definition -> DEFINE data_type ID LPAREN . function_definition_args RPAREN block
+    (83) function_definition -> DEFINE data_type ID LPAREN . function_definition_args RPAREN error
+    (7) function_definition_args -> . var_list
+    (8) function_definition_args -> . empty
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (81) empty -> .
+    (11) var_declaration -> . data_type ID
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+
+    RPAREN          reduce using rule 81 (empty -> .)
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+
+    data_type                      shift and go to state 45
+    function_definition_args       shift and go to state 46
+    var_list                       shift and go to state 47
+    empty                          shift and go to state 48
+    var_declaration                shift and go to state 49
+
+state 36
+
+    (5) class_definition -> DEFINE CLASS ID LPAREN . RPAREN LBRACE program RBRACE
+
+    RPAREN          shift and go to state 50
+
+
+state 37
+
+    (79) factor_expr -> LPAREN expression . RPAREN
+    (68) expression -> expression . PLUS term
+    (69) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 51
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 38
+
+    (17) function_call -> ID LPAREN function_call_args RPAREN .
+
+    $end            reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    RBRACE          reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    TIMES           reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    DIVIDE          reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    MOD             reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    COMMA           reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    PLUS            reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    MINUS           reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    RPAREN          reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+    SEMI_COLON      reduce using rule 17 (function_call -> ID LPAREN function_call_args RPAREN .)
+
+
+state 39
+
+    (20) parameter_list -> expression COMMA . parameter_list
+    (20) parameter_list -> . expression COMMA parameter_list
+    (21) parameter_list -> . expression
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    expression                     shift and go to state 25
+    parameter_list                 shift and go to state 52
+    term                           shift and go to state 26
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 40
+
+    (68) expression -> expression PLUS . term
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    term                           shift and go to state 53
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 41
+
+    (69) expression -> expression MINUS . term
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    term                           shift and go to state 54
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 42
+
+    (71) term -> term TIMES . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    factor                         shift and go to state 55
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 43
+
+    (72) term -> term DIVIDE . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    factor                         shift and go to state 56
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 44
+
+    (73) term -> term MOD . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    factor                         shift and go to state 57
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 45
+
+    (11) var_declaration -> data_type . ID
+
+    ID              shift and go to state 58
+
+
+state 46
+
+    (6) function_definition -> DEFINE data_type ID LPAREN function_definition_args . RPAREN block
+    (83) function_definition -> DEFINE data_type ID LPAREN function_definition_args . RPAREN error
+
+    RPAREN          shift and go to state 59
+
+
+state 47
+
+    (7) function_definition_args -> var_list .
+
+    RPAREN          reduce using rule 7 (function_definition_args -> var_list .)
+
+
+state 48
+
+    (8) function_definition_args -> empty .
+
+    RPAREN          reduce using rule 8 (function_definition_args -> empty .)
+
+
+state 49
+
+    (9) var_list -> var_declaration . COMMA var_list
+    (10) var_list -> var_declaration .
+
+    COMMA           shift and go to state 60
+    RPAREN          reduce using rule 10 (var_list -> var_declaration .)
+    SEMI_COLON      reduce using rule 10 (var_list -> var_declaration .)
+
+
+state 50
+
+    (5) class_definition -> DEFINE CLASS ID LPAREN RPAREN . LBRACE program RBRACE
+
+    LBRACE          shift and go to state 61
+
+
+state 51
+
+    (79) factor_expr -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    MOD             reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+    SEMI_COLON      reduce using rule 79 (factor_expr -> LPAREN expression RPAREN .)
+
+
+state 52
+
+    (20) parameter_list -> expression COMMA parameter_list .
+
+    RPAREN          reduce using rule 20 (parameter_list -> expression COMMA parameter_list .)
+
+
+state 53
+
+    (68) expression -> expression PLUS term .
+    (71) term -> term . TIMES factor
+    (72) term -> term . DIVIDE factor
+    (73) term -> term . MOD factor
+
+    COMMA           reduce using rule 68 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 68 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 68 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 68 (expression -> expression PLUS term .)
+    SEMI_COLON      reduce using rule 68 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 42
+    DIVIDE          shift and go to state 43
+    MOD             shift and go to state 44
+
+
+state 54
+
+    (69) expression -> expression MINUS term .
+    (71) term -> term . TIMES factor
+    (72) term -> term . DIVIDE factor
+    (73) term -> term . MOD factor
+
+    COMMA           reduce using rule 69 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 69 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 69 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 69 (expression -> expression MINUS term .)
+    SEMI_COLON      reduce using rule 69 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 42
+    DIVIDE          shift and go to state 43
+    MOD             shift and go to state 44
+
+
+state 55
+
+    (71) term -> term TIMES factor .
+
+    TIMES           reduce using rule 71 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 71 (term -> term TIMES factor .)
+    MOD             reduce using rule 71 (term -> term TIMES factor .)
+    COMMA           reduce using rule 71 (term -> term TIMES factor .)
+    PLUS            reduce using rule 71 (term -> term TIMES factor .)
+    MINUS           reduce using rule 71 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 71 (term -> term TIMES factor .)
+    SEMI_COLON      reduce using rule 71 (term -> term TIMES factor .)
+
+
+state 56
+
+    (72) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 72 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 72 (term -> term DIVIDE factor .)
+    MOD             reduce using rule 72 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 72 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 72 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 72 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 72 (term -> term DIVIDE factor .)
+    SEMI_COLON      reduce using rule 72 (term -> term DIVIDE factor .)
+
+
+state 57
+
+    (73) term -> term MOD factor .
+
+    TIMES           reduce using rule 73 (term -> term MOD factor .)
+    DIVIDE          reduce using rule 73 (term -> term MOD factor .)
+    MOD             reduce using rule 73 (term -> term MOD factor .)
+    COMMA           reduce using rule 73 (term -> term MOD factor .)
+    PLUS            reduce using rule 73 (term -> term MOD factor .)
+    MINUS           reduce using rule 73 (term -> term MOD factor .)
+    RPAREN          reduce using rule 73 (term -> term MOD factor .)
+    SEMI_COLON      reduce using rule 73 (term -> term MOD factor .)
+
+
+state 58
+
+    (11) var_declaration -> data_type ID .
+
+    COMMA           reduce using rule 11 (var_declaration -> data_type ID .)
+    RPAREN          reduce using rule 11 (var_declaration -> data_type ID .)
+    SEMI_COLON      reduce using rule 11 (var_declaration -> data_type ID .)
+    EQUALS          reduce using rule 11 (var_declaration -> data_type ID .)
+
+
+state 59
+
+    (6) function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN . block
+    (83) function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN . error
+    (22) block -> . LBRACE statements RBRACE
+
+    error           shift and go to state 63
+    LBRACE          shift and go to state 64
+
+    block                          shift and go to state 62
+
+state 60
+
+    (9) var_list -> var_declaration COMMA . var_list
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (11) var_declaration -> . data_type ID
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+
+    var_declaration                shift and go to state 49
+    var_list                       shift and go to state 65
+    data_type                      shift and go to state 45
+
+state 61
+
+    (5) class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE . program RBRACE
+    (1) program -> . function_definition program
+    (2) program -> . class_definition program
+    (3) program -> . function_call
+    (4) program -> . empty
+    (6) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN block
+    (83) function_definition -> . DEFINE data_type ID LPAREN function_definition_args RPAREN error
+    (5) class_definition -> . DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (81) empty -> .
+
+    DEFINE          shift and go to state 6
+    ID              shift and go to state 7
+    RBRACE          reduce using rule 81 (empty -> .)
+
+    program                        shift and go to state 66
+    function_definition            shift and go to state 2
+    class_definition               shift and go to state 3
+    function_call                  shift and go to state 4
+    empty                          shift and go to state 5
+
+state 62
+
+    (6) function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN block .
+
+    DEFINE          reduce using rule 6 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN block .)
+    ID              reduce using rule 6 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN block .)
+    $end            reduce using rule 6 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN block .)
+    RBRACE          reduce using rule 6 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN block .)
+
+
+state 63
+
+    (83) function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN error .
+
+    DEFINE          reduce using rule 83 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN error .)
+    ID              reduce using rule 83 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN error .)
+    $end            reduce using rule 83 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN error .)
+    RBRACE          reduce using rule 83 (function_definition -> DEFINE data_type ID LPAREN function_definition_args RPAREN error .)
+
+
+state 64
+
+    (22) block -> LBRACE . statements RBRACE
+    (23) statements -> . statement statements
+    (24) statements -> . empty
+    (25) statement -> . matched_statement
+    (26) statement -> . unmatched_statement
+    (81) empty -> .
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (34) unmatched_statement -> . IF LPAREN logical_expression RPAREN matched_statement
+    (35) unmatched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    RBRACE          reduce using rule 81 (empty -> .)
+    IF              shift and go to state 72
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    statements                     shift and go to state 67
+    statement                      shift and go to state 68
+    empty                          shift and go to state 69
+    matched_statement              shift and go to state 70
+    unmatched_statement            shift and go to state 71
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 65
+
+    (9) var_list -> var_declaration COMMA var_list .
+
+    RPAREN          reduce using rule 9 (var_list -> var_declaration COMMA var_list .)
+    SEMI_COLON      reduce using rule 9 (var_list -> var_declaration COMMA var_list .)
+
+
+state 66
+
+    (5) class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program . RBRACE
+
+    RBRACE          shift and go to state 85
+
+
+state 67
+
+    (22) block -> LBRACE statements . RBRACE
+
+    RBRACE          shift and go to state 86
+
+
+state 68
+
+    (23) statements -> statement . statements
+    (23) statements -> . statement statements
+    (24) statements -> . empty
+    (25) statement -> . matched_statement
+    (26) statement -> . unmatched_statement
+    (81) empty -> .
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (34) unmatched_statement -> . IF LPAREN logical_expression RPAREN matched_statement
+    (35) unmatched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    RBRACE          reduce using rule 81 (empty -> .)
+    IF              shift and go to state 72
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    statement                      shift and go to state 68
+    statements                     shift and go to state 87
+    empty                          shift and go to state 69
+    matched_statement              shift and go to state 70
+    unmatched_statement            shift and go to state 71
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 69
+
+    (24) statements -> empty .
+
+    RBRACE          reduce using rule 24 (statements -> empty .)
+
+
+state 70
+
+    (25) statement -> matched_statement .
+
+    IF              reduce using rule 25 (statement -> matched_statement .)
+    WHILE           reduce using rule 25 (statement -> matched_statement .)
+    FOR             reduce using rule 25 (statement -> matched_statement .)
+    RETURN          reduce using rule 25 (statement -> matched_statement .)
+    LBRACE          reduce using rule 25 (statement -> matched_statement .)
+    ID              reduce using rule 25 (statement -> matched_statement .)
+    VOID            reduce using rule 25 (statement -> matched_statement .)
+    INT             reduce using rule 25 (statement -> matched_statement .)
+    FLOAT           reduce using rule 25 (statement -> matched_statement .)
+    STRING          reduce using rule 25 (statement -> matched_statement .)
+    CHAR            reduce using rule 25 (statement -> matched_statement .)
+    LPAREN          reduce using rule 25 (statement -> matched_statement .)
+    INTCONST        reduce using rule 25 (statement -> matched_statement .)
+    FLOATCONST      reduce using rule 25 (statement -> matched_statement .)
+    RBRACE          reduce using rule 25 (statement -> matched_statement .)
+
+
+state 71
+
+    (26) statement -> unmatched_statement .
+
+    IF              reduce using rule 26 (statement -> unmatched_statement .)
+    WHILE           reduce using rule 26 (statement -> unmatched_statement .)
+    FOR             reduce using rule 26 (statement -> unmatched_statement .)
+    RETURN          reduce using rule 26 (statement -> unmatched_statement .)
+    LBRACE          reduce using rule 26 (statement -> unmatched_statement .)
+    ID              reduce using rule 26 (statement -> unmatched_statement .)
+    VOID            reduce using rule 26 (statement -> unmatched_statement .)
+    INT             reduce using rule 26 (statement -> unmatched_statement .)
+    FLOAT           reduce using rule 26 (statement -> unmatched_statement .)
+    STRING          reduce using rule 26 (statement -> unmatched_statement .)
+    CHAR            reduce using rule 26 (statement -> unmatched_statement .)
+    LPAREN          reduce using rule 26 (statement -> unmatched_statement .)
+    INTCONST        reduce using rule 26 (statement -> unmatched_statement .)
+    FLOATCONST      reduce using rule 26 (statement -> unmatched_statement .)
+    RBRACE          reduce using rule 26 (statement -> unmatched_statement .)
+
+
+state 72
+
+    (27) matched_statement -> IF . LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (34) unmatched_statement -> IF . LPAREN logical_expression RPAREN matched_statement
+    (35) unmatched_statement -> IF . LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement
+
+    LPAREN          shift and go to state 88
+
+
+state 73
+
+    (28) matched_statement -> WHILE . LPAREN logical_expression RPAREN matched_statement
+
+    LPAREN          shift and go to state 89
+
+
+state 74
+
+    (29) matched_statement -> FOR . LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+
+    LPAREN          shift and go to state 90
+
+
+state 75
+
+    (58) compound_statement -> assignment .
+
+    SEMI_COLON      reduce using rule 58 (compound_statement -> assignment .)
+
+
+state 76
+
+    (30) matched_statement -> return_statement . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 91
+
+
+state 77
+
+    (31) matched_statement -> compound_statement . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 92
+
+
+state 78
+
+    (32) matched_statement -> simple_statement . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 93
+
+
+state 79
+
+    (33) matched_statement -> block .
+
+    IF              reduce using rule 33 (matched_statement -> block .)
+    WHILE           reduce using rule 33 (matched_statement -> block .)
+    FOR             reduce using rule 33 (matched_statement -> block .)
+    RETURN          reduce using rule 33 (matched_statement -> block .)
+    LBRACE          reduce using rule 33 (matched_statement -> block .)
+    ID              reduce using rule 33 (matched_statement -> block .)
+    VOID            reduce using rule 33 (matched_statement -> block .)
+    INT             reduce using rule 33 (matched_statement -> block .)
+    FLOAT           reduce using rule 33 (matched_statement -> block .)
+    STRING          reduce using rule 33 (matched_statement -> block .)
+    CHAR            reduce using rule 33 (matched_statement -> block .)
+    LPAREN          reduce using rule 33 (matched_statement -> block .)
+    INTCONST        reduce using rule 33 (matched_statement -> block .)
+    FLOATCONST      reduce using rule 33 (matched_statement -> block .)
+    RBRACE          reduce using rule 33 (matched_statement -> block .)
+    ELSE            reduce using rule 33 (matched_statement -> block .)
+
+
+state 80
+
+    (82) return_statement -> RETURN . expression
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    expression                     shift and go to state 94
+    term                           shift and go to state 26
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 81
+
+    (59) simple_statement -> expression .
+    (68) expression -> expression . PLUS term
+    (69) expression -> expression . MINUS term
+
+    SEMI_COLON      reduce using rule 59 (simple_statement -> expression .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 82
+
+    (57) compound_statement -> var_list .
+
+    SEMI_COLON      reduce using rule 57 (compound_statement -> var_list .)
+
+
+state 83
+
+    (9) var_list -> var_declaration . COMMA var_list
+    (10) var_list -> var_declaration .
+    (60) assignment -> var_declaration . EQUALS expression
+    (61) assignment -> var_declaration . EQUALS string
+    (62) assignment -> var_declaration . EQUALS char
+
+    COMMA           shift and go to state 60
+    SEMI_COLON      reduce using rule 10 (var_list -> var_declaration .)
+    EQUALS          shift and go to state 95
+
+
+state 84
+
+    (63) assignment -> ID . EQUALS expression
+    (64) assignment -> ID . EQUALS string
+    (65) assignment -> ID . EQUALS char
+    (76) factor -> ID .
+    (17) function_call -> ID . LPAREN function_call_args RPAREN
+
+    EQUALS          shift and go to state 96
+    TIMES           reduce using rule 76 (factor -> ID .)
+    DIVIDE          reduce using rule 76 (factor -> ID .)
+    MOD             reduce using rule 76 (factor -> ID .)
+    PLUS            reduce using rule 76 (factor -> ID .)
+    MINUS           reduce using rule 76 (factor -> ID .)
+    SEMI_COLON      reduce using rule 76 (factor -> ID .)
+    LPAREN          shift and go to state 17
+
+
+state 85
+
+    (5) class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE .
+
+    DEFINE          reduce using rule 5 (class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE .)
+    ID              reduce using rule 5 (class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE .)
+    $end            reduce using rule 5 (class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE .)
+    RBRACE          reduce using rule 5 (class_definition -> DEFINE CLASS ID LPAREN RPAREN LBRACE program RBRACE .)
+
+
+state 86
+
+    (22) block -> LBRACE statements RBRACE .
+
+    DEFINE          reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    ID              reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    $end            reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    IF              reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    WHILE           reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    FOR             reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    RETURN          reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    LBRACE          reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    VOID            reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    INT             reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    FLOAT           reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    STRING          reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    CHAR            reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    LPAREN          reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    INTCONST        reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    FLOATCONST      reduce using rule 22 (block -> LBRACE statements RBRACE .)
+    ELSE            reduce using rule 22 (block -> LBRACE statements RBRACE .)
+
+
+state 87
+
+    (23) statements -> statement statements .
+
+    RBRACE          reduce using rule 23 (statements -> statement statements .)
+
+
+state 88
+
+    (27) matched_statement -> IF LPAREN . logical_expression RPAREN matched_statement ELSE matched_statement
+    (34) unmatched_statement -> IF LPAREN . logical_expression RPAREN matched_statement
+    (35) unmatched_statement -> IF LPAREN . logical_expression RPAREN matched_statement ELSE unmatched_statement
+    (36) logical_expression -> . logical_term OR logical_term
+    (37) logical_expression -> . logical_term
+    (38) logical_term -> . logical_factor AND logical_factor
+    (39) logical_term -> . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_expression             shift and go to state 98
+    logical_term                   shift and go to state 99
+    logical_factor                 shift and go to state 100
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 89
+
+    (28) matched_statement -> WHILE LPAREN . logical_expression RPAREN matched_statement
+    (36) logical_expression -> . logical_term OR logical_term
+    (37) logical_expression -> . logical_term
+    (38) logical_term -> . logical_factor AND logical_factor
+    (39) logical_term -> . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_expression             shift and go to state 106
+    logical_term                   shift and go to state 99
+    logical_factor                 shift and go to state 100
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 90
+
+    (29) matched_statement -> FOR LPAREN . assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (11) var_declaration -> . data_type ID
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+
+    ID              shift and go to state 109
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+
+    assignment                     shift and go to state 107
+    var_declaration                shift and go to state 108
+    data_type                      shift and go to state 45
+
+state 91
+
+    (30) matched_statement -> return_statement SEMI_COLON .
+
+    IF              reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    WHILE           reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    FOR             reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    RETURN          reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    LBRACE          reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    ID              reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    VOID            reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    INT             reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    FLOAT           reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    STRING          reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    CHAR            reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    LPAREN          reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    INTCONST        reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    FLOATCONST      reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    RBRACE          reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+    ELSE            reduce using rule 30 (matched_statement -> return_statement SEMI_COLON .)
+
+
+state 92
+
+    (31) matched_statement -> compound_statement SEMI_COLON .
+
+    IF              reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    WHILE           reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    FOR             reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    RETURN          reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    LBRACE          reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    ID              reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    VOID            reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    INT             reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    FLOAT           reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    STRING          reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    CHAR            reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    LPAREN          reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    INTCONST        reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    FLOATCONST      reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    RBRACE          reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+    ELSE            reduce using rule 31 (matched_statement -> compound_statement SEMI_COLON .)
+
+
+state 93
+
+    (32) matched_statement -> simple_statement SEMI_COLON .
+
+    IF              reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    WHILE           reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    FOR             reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    RETURN          reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    LBRACE          reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    ID              reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    VOID            reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    INT             reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    FLOAT           reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    STRING          reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    CHAR            reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    LPAREN          reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    INTCONST        reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    FLOATCONST      reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    RBRACE          reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+    ELSE            reduce using rule 32 (matched_statement -> simple_statement SEMI_COLON .)
+
+
+state 94
+
+    (82) return_statement -> RETURN expression .
+    (68) expression -> expression . PLUS term
+    (69) expression -> expression . MINUS term
+
+    SEMI_COLON      reduce using rule 82 (return_statement -> RETURN expression .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 95
+
+    (60) assignment -> var_declaration EQUALS . expression
+    (61) assignment -> var_declaration EQUALS . string
+    (62) assignment -> var_declaration EQUALS . char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (66) string -> . STRINGCONST
+    (67) char -> . CHARCONST
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    STRINGCONST     shift and go to state 113
+    CHARCONST       shift and go to state 114
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    expression                     shift and go to state 110
+    string                         shift and go to state 111
+    char                           shift and go to state 112
+    term                           shift and go to state 26
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 96
+
+    (63) assignment -> ID EQUALS . expression
+    (64) assignment -> ID EQUALS . string
+    (65) assignment -> ID EQUALS . char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (66) string -> . STRINGCONST
+    (67) char -> . CHARCONST
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    STRINGCONST     shift and go to state 113
+    CHARCONST       shift and go to state 114
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    expression                     shift and go to state 115
+    string                         shift and go to state 116
+    char                           shift and go to state 117
+    term                           shift and go to state 26
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 97
+
+    (42) logical_factor -> LPAREN . logical_expression RPAREN
+    (36) logical_expression -> . logical_term OR logical_term
+    (37) logical_expression -> . logical_term
+    (38) logical_term -> . logical_factor AND logical_factor
+    (39) logical_term -> . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_expression             shift and go to state 118
+    logical_term                   shift and go to state 99
+    logical_factor                 shift and go to state 100
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 98
+
+    (27) matched_statement -> IF LPAREN logical_expression . RPAREN matched_statement ELSE matched_statement
+    (34) unmatched_statement -> IF LPAREN logical_expression . RPAREN matched_statement
+    (35) unmatched_statement -> IF LPAREN logical_expression . RPAREN matched_statement ELSE unmatched_statement
+
+    RPAREN          shift and go to state 119
+
+
+state 99
+
+    (36) logical_expression -> logical_term . OR logical_term
+    (37) logical_expression -> logical_term .
+
+    OR              shift and go to state 120
+    RPAREN          reduce using rule 37 (logical_expression -> logical_term .)
+    SEMI_COLON      reduce using rule 37 (logical_expression -> logical_term .)
+
+
+state 100
+
+    (38) logical_term -> logical_factor . AND logical_factor
+    (39) logical_term -> logical_factor .
+
+    AND             shift and go to state 121
+    OR              reduce using rule 39 (logical_term -> logical_factor .)
+    RPAREN          reduce using rule 39 (logical_term -> logical_factor .)
+    SEMI_COLON      reduce using rule 39 (logical_term -> logical_factor .)
+
+
+state 101
+
+    (40) logical_factor -> boolean_statement .
+
+    AND             reduce using rule 40 (logical_factor -> boolean_statement .)
+    OR              reduce using rule 40 (logical_factor -> boolean_statement .)
+    RPAREN          reduce using rule 40 (logical_factor -> boolean_statement .)
+    SEMI_COLON      reduce using rule 40 (logical_factor -> boolean_statement .)
+
+
+state 102
+
+    (41) logical_factor -> NOT . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_factor                 shift and go to state 122
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 103
+
+    (43) boolean_statement -> value . comparison_op value
+    (44) boolean_statement -> value .
+    (51) comparison_op -> . LESS_THAN
+    (52) comparison_op -> . LESS_EQUAL
+    (53) comparison_op -> . GREATER_THAN
+    (54) comparison_op -> . GREATER_EQUAL
+    (55) comparison_op -> . EQUAL
+    (56) comparison_op -> . NOT_EQUAL
+
+    AND             reduce using rule 44 (boolean_statement -> value .)
+    OR              reduce using rule 44 (boolean_statement -> value .)
+    RPAREN          reduce using rule 44 (boolean_statement -> value .)
+    SEMI_COLON      reduce using rule 44 (boolean_statement -> value .)
+    LESS_THAN       shift and go to state 124
+    LESS_EQUAL      shift and go to state 125
+    GREATER_THAN    shift and go to state 126
+    GREATER_EQUAL   shift and go to state 127
+    EQUAL           shift and go to state 128
+    NOT_EQUAL       shift and go to state 129
+
+    comparison_op                  shift and go to state 123
+
+state 104
+
+    (45) value -> ID .
+
+    LESS_THAN       reduce using rule 45 (value -> ID .)
+    LESS_EQUAL      reduce using rule 45 (value -> ID .)
+    GREATER_THAN    reduce using rule 45 (value -> ID .)
+    GREATER_EQUAL   reduce using rule 45 (value -> ID .)
+    EQUAL           reduce using rule 45 (value -> ID .)
+    NOT_EQUAL       reduce using rule 45 (value -> ID .)
+    AND             reduce using rule 45 (value -> ID .)
+    OR              reduce using rule 45 (value -> ID .)
+    RPAREN          reduce using rule 45 (value -> ID .)
+    SEMI_COLON      reduce using rule 45 (value -> ID .)
+
+
+state 105
+
+    (46) value -> number .
+
+    LESS_THAN       reduce using rule 46 (value -> number .)
+    LESS_EQUAL      reduce using rule 46 (value -> number .)
+    GREATER_THAN    reduce using rule 46 (value -> number .)
+    GREATER_EQUAL   reduce using rule 46 (value -> number .)
+    EQUAL           reduce using rule 46 (value -> number .)
+    NOT_EQUAL       reduce using rule 46 (value -> number .)
+    AND             reduce using rule 46 (value -> number .)
+    OR              reduce using rule 46 (value -> number .)
+    RPAREN          reduce using rule 46 (value -> number .)
+    SEMI_COLON      reduce using rule 46 (value -> number .)
+
+
+state 106
+
+    (28) matched_statement -> WHILE LPAREN logical_expression . RPAREN matched_statement
+
+    RPAREN          shift and go to state 130
+
+
+state 107
+
+    (29) matched_statement -> FOR LPAREN assignment . SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+
+    SEMI_COLON      shift and go to state 131
+
+
+state 108
+
+    (60) assignment -> var_declaration . EQUALS expression
+    (61) assignment -> var_declaration . EQUALS string
+    (62) assignment -> var_declaration . EQUALS char
+
+    EQUALS          shift and go to state 95
+
+
+state 109
+
+    (63) assignment -> ID . EQUALS expression
+    (64) assignment -> ID . EQUALS string
+    (65) assignment -> ID . EQUALS char
+
+    EQUALS          shift and go to state 96
+
+
+state 110
+
+    (60) assignment -> var_declaration EQUALS expression .
+    (68) expression -> expression . PLUS term
+    (69) expression -> expression . MINUS term
+
+    SEMI_COLON      reduce using rule 60 (assignment -> var_declaration EQUALS expression .)
+    RPAREN          reduce using rule 60 (assignment -> var_declaration EQUALS expression .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 111
+
+    (61) assignment -> var_declaration EQUALS string .
+
+    SEMI_COLON      reduce using rule 61 (assignment -> var_declaration EQUALS string .)
+    RPAREN          reduce using rule 61 (assignment -> var_declaration EQUALS string .)
+
+
+state 112
+
+    (62) assignment -> var_declaration EQUALS char .
+
+    SEMI_COLON      reduce using rule 62 (assignment -> var_declaration EQUALS char .)
+    RPAREN          reduce using rule 62 (assignment -> var_declaration EQUALS char .)
+
+
+state 113
+
+    (66) string -> STRINGCONST .
+
+    SEMI_COLON      reduce using rule 66 (string -> STRINGCONST .)
+    RPAREN          reduce using rule 66 (string -> STRINGCONST .)
+
+
+state 114
+
+    (67) char -> CHARCONST .
+
+    SEMI_COLON      reduce using rule 67 (char -> CHARCONST .)
+    RPAREN          reduce using rule 67 (char -> CHARCONST .)
+
+
+state 115
+
+    (63) assignment -> ID EQUALS expression .
+    (68) expression -> expression . PLUS term
+    (69) expression -> expression . MINUS term
+
+    SEMI_COLON      reduce using rule 63 (assignment -> ID EQUALS expression .)
+    RPAREN          reduce using rule 63 (assignment -> ID EQUALS expression .)
+    PLUS            shift and go to state 40
+    MINUS           shift and go to state 41
+
+
+state 116
+
+    (64) assignment -> ID EQUALS string .
+
+    SEMI_COLON      reduce using rule 64 (assignment -> ID EQUALS string .)
+    RPAREN          reduce using rule 64 (assignment -> ID EQUALS string .)
+
+
+state 117
+
+    (65) assignment -> ID EQUALS char .
+
+    SEMI_COLON      reduce using rule 65 (assignment -> ID EQUALS char .)
+    RPAREN          reduce using rule 65 (assignment -> ID EQUALS char .)
+
+
+state 118
+
+    (42) logical_factor -> LPAREN logical_expression . RPAREN
+
+    RPAREN          shift and go to state 132
+
+
+state 119
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN . matched_statement ELSE matched_statement
+    (34) unmatched_statement -> IF LPAREN logical_expression RPAREN . matched_statement
+    (35) unmatched_statement -> IF LPAREN logical_expression RPAREN . matched_statement ELSE unmatched_statement
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    IF              shift and go to state 133
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    matched_statement              shift and go to state 134
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 120
+
+    (36) logical_expression -> logical_term OR . logical_term
+    (38) logical_term -> . logical_factor AND logical_factor
+    (39) logical_term -> . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_term                   shift and go to state 135
+    logical_factor                 shift and go to state 100
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 121
+
+    (38) logical_term -> logical_factor AND . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_factor                 shift and go to state 136
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 122
+
+    (41) logical_factor -> NOT logical_factor .
+
+    AND             reduce using rule 41 (logical_factor -> NOT logical_factor .)
+    OR              reduce using rule 41 (logical_factor -> NOT logical_factor .)
+    RPAREN          reduce using rule 41 (logical_factor -> NOT logical_factor .)
+    SEMI_COLON      reduce using rule 41 (logical_factor -> NOT logical_factor .)
+
+
+state 123
+
+    (43) boolean_statement -> value comparison_op . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    value                          shift and go to state 137
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 124
+
+    (51) comparison_op -> LESS_THAN .
+
+    ID              reduce using rule 51 (comparison_op -> LESS_THAN .)
+    INTCONST        reduce using rule 51 (comparison_op -> LESS_THAN .)
+    FLOATCONST      reduce using rule 51 (comparison_op -> LESS_THAN .)
+
+
+state 125
+
+    (52) comparison_op -> LESS_EQUAL .
+
+    ID              reduce using rule 52 (comparison_op -> LESS_EQUAL .)
+    INTCONST        reduce using rule 52 (comparison_op -> LESS_EQUAL .)
+    FLOATCONST      reduce using rule 52 (comparison_op -> LESS_EQUAL .)
+
+
+state 126
+
+    (53) comparison_op -> GREATER_THAN .
+
+    ID              reduce using rule 53 (comparison_op -> GREATER_THAN .)
+    INTCONST        reduce using rule 53 (comparison_op -> GREATER_THAN .)
+    FLOATCONST      reduce using rule 53 (comparison_op -> GREATER_THAN .)
+
+
+state 127
+
+    (54) comparison_op -> GREATER_EQUAL .
+
+    ID              reduce using rule 54 (comparison_op -> GREATER_EQUAL .)
+    INTCONST        reduce using rule 54 (comparison_op -> GREATER_EQUAL .)
+    FLOATCONST      reduce using rule 54 (comparison_op -> GREATER_EQUAL .)
+
+
+state 128
+
+    (55) comparison_op -> EQUAL .
+
+    ID              reduce using rule 55 (comparison_op -> EQUAL .)
+    INTCONST        reduce using rule 55 (comparison_op -> EQUAL .)
+    FLOATCONST      reduce using rule 55 (comparison_op -> EQUAL .)
+
+
+state 129
+
+    (56) comparison_op -> NOT_EQUAL .
+
+    ID              reduce using rule 56 (comparison_op -> NOT_EQUAL .)
+    INTCONST        reduce using rule 56 (comparison_op -> NOT_EQUAL .)
+    FLOATCONST      reduce using rule 56 (comparison_op -> NOT_EQUAL .)
+
+
+state 130
+
+    (28) matched_statement -> WHILE LPAREN logical_expression RPAREN . matched_statement
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    IF              shift and go to state 133
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    matched_statement              shift and go to state 138
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 131
+
+    (29) matched_statement -> FOR LPAREN assignment SEMI_COLON . logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (36) logical_expression -> . logical_term OR logical_term
+    (37) logical_expression -> . logical_term
+    (38) logical_term -> . logical_factor AND logical_factor
+    (39) logical_term -> . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_expression             shift and go to state 139
+    logical_term                   shift and go to state 99
+    logical_factor                 shift and go to state 100
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 132
+
+    (42) logical_factor -> LPAREN logical_expression RPAREN .
+
+    AND             reduce using rule 42 (logical_factor -> LPAREN logical_expression RPAREN .)
+    OR              reduce using rule 42 (logical_factor -> LPAREN logical_expression RPAREN .)
+    RPAREN          reduce using rule 42 (logical_factor -> LPAREN logical_expression RPAREN .)
+    SEMI_COLON      reduce using rule 42 (logical_factor -> LPAREN logical_expression RPAREN .)
+
+
+state 133
+
+    (27) matched_statement -> IF . LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+
+    LPAREN          shift and go to state 140
+
+
+state 134
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN matched_statement . ELSE matched_statement
+    (34) unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .
+    (35) unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement . ELSE unmatched_statement
+
+    ELSE            shift and go to state 141
+    IF              reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    WHILE           reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    FOR             reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    RETURN          reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    LBRACE          reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    ID              reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    VOID            reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    INT             reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    FLOAT           reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    STRING          reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    CHAR            reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    LPAREN          reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    INTCONST        reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    FLOATCONST      reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+    RBRACE          reduce using rule 34 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement .)
+
+
+state 135
+
+    (36) logical_expression -> logical_term OR logical_term .
+
+    RPAREN          reduce using rule 36 (logical_expression -> logical_term OR logical_term .)
+    SEMI_COLON      reduce using rule 36 (logical_expression -> logical_term OR logical_term .)
+
+
+state 136
+
+    (38) logical_term -> logical_factor AND logical_factor .
+
+    OR              reduce using rule 38 (logical_term -> logical_factor AND logical_factor .)
+    RPAREN          reduce using rule 38 (logical_term -> logical_factor AND logical_factor .)
+    SEMI_COLON      reduce using rule 38 (logical_term -> logical_factor AND logical_factor .)
+
+
+state 137
+
+    (43) boolean_statement -> value comparison_op value .
+
+    AND             reduce using rule 43 (boolean_statement -> value comparison_op value .)
+    OR              reduce using rule 43 (boolean_statement -> value comparison_op value .)
+    RPAREN          reduce using rule 43 (boolean_statement -> value comparison_op value .)
+    SEMI_COLON      reduce using rule 43 (boolean_statement -> value comparison_op value .)
+
+
+state 138
+
+    (28) matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .
+
+    IF              reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    WHILE           reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    FOR             reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    RETURN          reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    LBRACE          reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    ID              reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    VOID            reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    INT             reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    FLOAT           reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    STRING          reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    CHAR            reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    LPAREN          reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    INTCONST        reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    FLOATCONST      reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    RBRACE          reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+    ELSE            reduce using rule 28 (matched_statement -> WHILE LPAREN logical_expression RPAREN matched_statement .)
+
+
+state 139
+
+    (29) matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression . SEMI_COLON assignment RPAREN matched_statement
+
+    SEMI_COLON      shift and go to state 142
+
+
+state 140
+
+    (27) matched_statement -> IF LPAREN . logical_expression RPAREN matched_statement ELSE matched_statement
+    (36) logical_expression -> . logical_term OR logical_term
+    (37) logical_expression -> . logical_term
+    (38) logical_term -> . logical_factor AND logical_factor
+    (39) logical_term -> . logical_factor
+    (40) logical_factor -> . boolean_statement
+    (41) logical_factor -> . NOT logical_factor
+    (42) logical_factor -> . LPAREN logical_expression RPAREN
+    (43) boolean_statement -> . value comparison_op value
+    (44) boolean_statement -> . value
+    (45) value -> . ID
+    (46) value -> . number
+    (47) number -> . int
+    (48) number -> . float
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    NOT             shift and go to state 102
+    LPAREN          shift and go to state 97
+    ID              shift and go to state 104
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    logical_expression             shift and go to state 143
+    logical_term                   shift and go to state 99
+    logical_factor                 shift and go to state 100
+    boolean_statement              shift and go to state 101
+    value                          shift and go to state 103
+    number                         shift and go to state 105
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 141
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE . matched_statement
+    (35) unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE . unmatched_statement
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (34) unmatched_statement -> . IF LPAREN logical_expression RPAREN matched_statement
+    (35) unmatched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    IF              shift and go to state 72
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    matched_statement              shift and go to state 144
+    unmatched_statement            shift and go to state 145
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 142
+
+    (29) matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON . assignment RPAREN matched_statement
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (11) var_declaration -> . data_type ID
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+
+    ID              shift and go to state 109
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+
+    assignment                     shift and go to state 146
+    var_declaration                shift and go to state 108
+    data_type                      shift and go to state 45
+
+state 143
+
+    (27) matched_statement -> IF LPAREN logical_expression . RPAREN matched_statement ELSE matched_statement
+
+    RPAREN          shift and go to state 147
+
+
+state 144
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .
+
+    IF              reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    WHILE           reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    FOR             reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    RETURN          reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    LBRACE          reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    ID              reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    VOID            reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    INT             reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    FLOAT           reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    STRING          reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    CHAR            reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    LPAREN          reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    INTCONST        reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    FLOATCONST      reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    RBRACE          reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+    ELSE            reduce using rule 27 (matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement .)
+
+
+state 145
+
+    (35) unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .
+
+    IF              reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    WHILE           reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    FOR             reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    RETURN          reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    LBRACE          reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    ID              reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    VOID            reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    INT             reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    FLOAT           reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    STRING          reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    CHAR            reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    LPAREN          reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    INTCONST        reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    FLOATCONST      reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+    RBRACE          reduce using rule 35 (unmatched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE unmatched_statement .)
+
+
+state 146
+
+    (29) matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment . RPAREN matched_statement
+
+    RPAREN          shift and go to state 148
+
+
+state 147
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN . matched_statement ELSE matched_statement
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    IF              shift and go to state 133
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    matched_statement              shift and go to state 149
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 148
+
+    (29) matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN . matched_statement
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    IF              shift and go to state 133
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    assignment                     shift and go to state 75
+    matched_statement              shift and go to state 150
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32
+
+state 149
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN matched_statement . ELSE matched_statement
+
+    ELSE            shift and go to state 151
+
+
+state 150
+
+    (29) matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .
+
+    IF              reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    WHILE           reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    FOR             reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    RETURN          reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    LBRACE          reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    ID              reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    VOID            reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    INT             reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    FLOAT           reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    STRING          reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    CHAR            reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    LPAREN          reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    INTCONST        reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    FLOATCONST      reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    RBRACE          reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+    ELSE            reduce using rule 29 (matched_statement -> FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement .)
+
+
+state 151
+
+    (27) matched_statement -> IF LPAREN logical_expression RPAREN matched_statement ELSE . matched_statement
+    (27) matched_statement -> . IF LPAREN logical_expression RPAREN matched_statement ELSE matched_statement
+    (28) matched_statement -> . WHILE LPAREN logical_expression RPAREN matched_statement
+    (29) matched_statement -> . FOR LPAREN assignment SEMI_COLON logical_expression SEMI_COLON assignment RPAREN matched_statement
+    (30) matched_statement -> . return_statement SEMI_COLON
+    (31) matched_statement -> . compound_statement SEMI_COLON
+    (32) matched_statement -> . simple_statement SEMI_COLON
+    (33) matched_statement -> . block
+    (82) return_statement -> . RETURN expression
+    (57) compound_statement -> . var_list
+    (58) compound_statement -> . assignment
+    (59) simple_statement -> . expression
+    (22) block -> . LBRACE statements RBRACE
+    (9) var_list -> . var_declaration COMMA var_list
+    (10) var_list -> . var_declaration
+    (60) assignment -> . var_declaration EQUALS expression
+    (61) assignment -> . var_declaration EQUALS string
+    (62) assignment -> . var_declaration EQUALS char
+    (63) assignment -> . ID EQUALS expression
+    (64) assignment -> . ID EQUALS string
+    (65) assignment -> . ID EQUALS char
+    (68) expression -> . expression PLUS term
+    (69) expression -> . expression MINUS term
+    (70) expression -> . term
+    (11) var_declaration -> . data_type ID
+    (71) term -> . term TIMES factor
+    (72) term -> . term DIVIDE factor
+    (73) term -> . term MOD factor
+    (74) term -> . factor
+    (12) data_type -> . VOID
+    (13) data_type -> . INT
+    (14) data_type -> . FLOAT
+    (15) data_type -> . STRING
+    (16) data_type -> . CHAR
+    (75) factor -> . number
+    (76) factor -> . ID
+    (77) factor -> . factor_expr
+    (78) factor -> . function_call
+    (47) number -> . int
+    (48) number -> . float
+    (79) factor_expr -> . LPAREN expression RPAREN
+    (17) function_call -> . ID LPAREN function_call_args RPAREN
+    (49) int -> . INTCONST
+    (50) float -> . FLOATCONST
+
+    IF              shift and go to state 133
+    WHILE           shift and go to state 73
+    FOR             shift and go to state 74
+    RETURN          shift and go to state 80
+    LBRACE          shift and go to state 64
+    ID              shift and go to state 84
+    VOID            shift and go to state 12
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 14
+    STRING          shift and go to state 15
+    CHAR            shift and go to state 16
+    LPAREN          shift and go to state 21
+    INTCONST        shift and go to state 33
+    FLOATCONST      shift and go to state 34
+
+    matched_statement              shift and go to state 144
+    assignment                     shift and go to state 75
+    return_statement               shift and go to state 76
+    compound_statement             shift and go to state 77
+    simple_statement               shift and go to state 78
+    block                          shift and go to state 79
+    expression                     shift and go to state 81
+    var_list                       shift and go to state 82
+    var_declaration                shift and go to state 83
+    term                           shift and go to state 26
+    data_type                      shift and go to state 45
+    factor                         shift and go to state 27
+    number                         shift and go to state 28
+    factor_expr                    shift and go to state 29
+    function_call                  shift and go to state 30
+    int                            shift and go to state 31
+    float                          shift and go to state 32

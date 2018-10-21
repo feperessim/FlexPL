@@ -1,0 +1,12 @@
+define int gcd_recursivo(int n, int m) {
+       int r;
+       r = n % m;
+       
+       if (r != 0) {
+              return  gcd_recursivo(m, r);
+       
+       }
+       else {
+       	    	  return m;	    
+       }
+}

@@ -1,0 +1,12 @@
+define int fib_iterativo(int n) {
+       int a = 0;
+       int b = 1;
+       n = n / 2;
+       
+       while (n > 0) {
+       	     a = a + b;
+	     b = b + a;
+	     n = n - 1;
+      }
+	return a;
+}

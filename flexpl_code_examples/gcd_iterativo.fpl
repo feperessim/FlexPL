@@ -1,0 +1,11 @@
+define int gcd_iterativo(int n, int m) {
+       int r;
+       r = n % m;
+
+       while (r != 0) {	     
+       	     n = m;
+	     m = r;
+	     r = n % m;
+       }
+       return m;
+}
