@@ -1,6 +1,6 @@
 # FlexPL
 FlexPL is a small compiler written in Python 3, with the help of PLY the implementation of lex and yacc parsing tools for Python.
-The compiler was developed during the second semester of 2017 in a class of Compilers in a Computer Science course.
+The compiler was developed during the first semester of 2018 in a class of Compilers in a Computer Science course.
 The sintax of FlexPL is similar to C, some examples can be found at the flexpl_code_examples directory. The compiler generates
 assembly code for integer arithmetic. 
 
