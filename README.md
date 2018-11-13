@@ -37,6 +37,7 @@ of the parameters of your function. And 'value' replaced with the apropriate val
 5. To finaly compile and link execute the following commands: 
 
 as --32  your_filename_here.s -o your_filename_here.o
+
 ld -melf_i386 your_filename_here.o -o your_filename_here
 
 6. Finally just run ./your_filename_here to execute the compiled program.
